@@ -250,7 +250,7 @@ public class ListaDeImoveis implements ListaImoveis {
                 numeroSala = Integer.parseInt(parte[11]);
                 NumeroBanheiro = Integer.parseInt(parte[12]);
 
-                sala = new SalaComercial(logradouro, numero, bairro, cidade,
+                sala = new SalaComercial(codigo,logradouro, numero, bairro, cidade,
                         descricao, areaTotal, valor, nomeEdificio, andar,
                         valorCondominio, NumeroBanheiro, numeroSala);
                 incluir(sala);

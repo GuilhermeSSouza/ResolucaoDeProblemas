@@ -20,6 +20,24 @@ public abstract class Imovel {
     protected String descricao;
     protected double areaTotal;
     protected double valor;
+    
+    public Imovel(int codigo,String logradouro, int numero, String bairro, String cidade, String descricao, double areaTotal, double valor) {
+        this.codigo = codigo;
+        codigoGeral++;
+        this.logradouro = logradouro;
+        this.numero = numero;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.descricao = descricao;
+        this.areaTotal = areaTotal;
+        this.valor = valor;
+    }
+    
+    
+    
+    
+    
+    
 
     /**
      * Construtor da Super Classe Imovéis

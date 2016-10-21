@@ -19,8 +19,8 @@ import java.util.Scanner;
  * @author Arcano
  */
 public class RP2T3 {
-    
-       public static void main(String[] args) {
+
+    public static void main(String[] args) {
 
         MenuSalaComercial salaC = new MenuSalaComercial();
         MenuApartamento Ap = new MenuApartamento();
@@ -30,17 +30,16 @@ public class RP2T3 {
         int op = 1;
         Scanner entrada = new Scanner(System.in);
         chacara.Carregar();
-        salaC.carregaArquivo();
-        
+        //salaC.carregaArquivo();
+
         while (op != 0) {
             System.out.println(" ");
             System.out.println("******** BEM VINDO AO MENU ********");
             System.out.println("1) APARTAMENTO \n2) CASA \n3) CHACARA\n"
                     + "4) SALA COMERCIAL \n5) TERRENO \n0) SAIR");
             System.out.println(" ");
-            
-            op =inInt("Opção: ");
-          
+
+            op = inInt("Opção: ");
 
             switch (op) {
                 case (1):
@@ -53,24 +52,24 @@ public class RP2T3 {
                     System.out.println(" ");
                     casa.menuInicial();
                     break;
-                    
+
                 case (3):
                     System.out.println(" ");
-                    chacara.menuInicial(); 
+                    chacara.menuInicial();
                     break;
-                    
+
                 case (4):
                     System.out.println(" ");
                     salaC.menuInicial();
                     break;
-                    
+
                 case (5):
                     System.out.println(" ");
                     terreno.menuInicial();
                     break;
-                    
+
             }
         }
-        salaC.carregaArquivo();
+       
     }
 }

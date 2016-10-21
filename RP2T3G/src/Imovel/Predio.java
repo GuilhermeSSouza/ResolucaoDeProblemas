@@ -15,6 +15,25 @@ public abstract class Predio extends Imovel {
     protected String nomeEdificio;
     protected int andar;
     protected double valorCondominio;
+    
+    public Predio(int codigo, String logradouro, int numero, String bairro,
+            String cidade, String descricao, double areaTotal, double valor,
+            String nomeEdificio, int andar, double valorCondominio) {
+
+        super(codigo, logradouro, numero, bairro, cidade, descricao, areaTotal, valor);
+
+        this.nomeEdificio = nomeEdificio;
+        this.andar = andar;
+        this.valorCondominio = valorCondominio;
+    
+    
+    
+    }
+    
+    
+    
+    
+    
     /**
      * Metodo construtor da class predio.
      * @param logradouro

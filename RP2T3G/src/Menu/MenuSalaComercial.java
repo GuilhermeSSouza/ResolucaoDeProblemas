@@ -304,8 +304,10 @@ public class MenuSalaComercial {
 
     public void menuInicial() {
         int i;
-
+        
         do {
+            
+            carregaArquivo();
             MenuSalaComercial.menu();
             i = entrada.nextInt();
             entrada.nextLine();
@@ -354,8 +356,10 @@ public class MenuSalaComercial {
                     break;
 
             }
+            lista.Clear();
 
         } while (i != 0);
+        
 
     }
 

@@ -16,6 +16,20 @@ public class SalaComercial extends Predio {
     protected int numeroDeBanheiros;
     protected int numeroDaSala;
 
+    public SalaComercial(int codigo,String logradouro, int numero, String bairro,
+            String cidade, String descricao, double areaTotal, double valor,
+            String nomeEdificio, int andar, double valorCondominio, int numeroDeBanheiros, int numeroDaSala) {
+
+        super(codigo, logradouro, numero, bairro, cidade, descricao,
+                areaTotal, valor, nomeEdificio, andar, valorCondominio);
+
+        this.numeroDeBanheiros = numeroDeBanheiros;
+        this.numeroDaSala = numeroDaSala;
+
+    }
+    
+    
+    
     /**
      * Metodo construtor da class SalaComercial
      * @param logradouro
