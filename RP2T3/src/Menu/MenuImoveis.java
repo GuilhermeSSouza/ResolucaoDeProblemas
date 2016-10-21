@@ -3,19 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package rp2t3;
+package Menu;
+
+
 
 /**
  *
  * @author Arcano
  */
-public class RP2T3 {
+public class MenuImoveis {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-    }
-    
 }
