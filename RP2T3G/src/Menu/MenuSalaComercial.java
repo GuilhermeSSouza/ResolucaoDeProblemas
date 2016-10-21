@@ -50,6 +50,26 @@ public class MenuSalaComercial {
 
     }
 
+    public void carregaArquivo() {
+        TipoDeImovel tipo = TipoDeImovel.SALACOMERCIAL;
+        String caminho = lista.Converte(tipo);
+        lista.setCaminho(caminho);
+        lista.lerArquivo();
+        if (lista.lerArquivo() == true) {
+            System.out.println("Arquivos carregados");
+        } else {
+            System.out.println("Arquivo não iniciados");
+        }
+
+    }
+    
+    public void escreveArquivo(){
+    
+     if(lista.escreverArquivo()){
+         System.out.println("Arquivos Salvos");
+     }
+    }
+
     /**
      * Metodo que faz a interação com o usuário, passando após as informações
      * para o construtor.
@@ -88,17 +108,8 @@ public class MenuSalaComercial {
 
         boolean objeto = lista.incluir(salaC);
 
-        System.out.println("\n\n");
-        if (objeto == true) {
-            System.out.println("Imóvel incluido com sucesso.");
-        } else {
-            System.out.println("Imóvel não foi incluido.");
-        }
-        try {
-            lista.escreverArquivo();
-        } catch (Exception ex) {
-            Logger.getLogger(MenuSalaComercial.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        System.out.println("\n");       
+        escreveArquivo();
     }
 
     /**
@@ -106,7 +117,7 @@ public class MenuSalaComercial {
      * na listaImoveis.
      */
     public void Consultar() {
-        
+
         System.out.println("\n");
         System.out.println("Digite o Código Que Deseja Consultar: ");
         Imovel Imo = lista.consultar(entrada.nextInt());
@@ -121,19 +132,18 @@ public class MenuSalaComercial {
 
     }
 
-
     public void excluirControle() {
         System.out.println(" DIGITE O CODIGO DO IMÓVEL: ");
         boolean objeto = lista.excluir(entrada.nextInt());
-        
+
         if (objeto == true) {
             try {
-            lista.escreverArquivo();
-        } catch (Exception ex) {
-            Logger.getLogger(MenuSalaComercial.class.getName()).log(Level.SEVERE, null, ex);
-        }            
+                lista.escreverArquivo();
+            } catch (Exception ex) {
+                Logger.getLogger(MenuSalaComercial.class.getName()).log(Level.SEVERE, null, ex);
+            }
             System.out.println("IMÓVEL EXCUIDO");
-            
+
         } else {
 
             System.out.println("IMÓVEL NÂO ENCONTRADO");
@@ -294,15 +304,7 @@ public class MenuSalaComercial {
 
     public void menuInicial() {
         int i;
-        TipoDeImovel tipo = TipoDeImovel.SALACOMERCIAL;
-        String caminho = lista.Converte(tipo);
-        lista.setCaminho(caminho);
-        lista.lerArquivo();
-        if(lista.lerArquivo()==true){
-            System.out.println("Arquivos carregados");
-        }else {
-            System.out.println("Arquivo não iniciados");
-        }
+
         do {
             MenuSalaComercial.menu();
             i = entrada.nextInt();

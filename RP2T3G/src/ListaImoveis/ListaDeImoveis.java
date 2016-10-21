@@ -154,14 +154,19 @@ public class ListaDeImoveis implements ListaImoveis {
         return l;
 
     }
+    
+    /**
+     * Metodo pra limpar a lista.
+     */
+    public void Clear(){
+    lista.clear();
+    }
 
     @Override
     public boolean escreverArquivo() {
-
         try {
             FileWriter outFile = new FileWriter(new File(caminho));
             BufferedWriter escrever = new BufferedWriter(outFile);
-            
             escrever.write(lista.get(0).toFileTitulo());
             escrever.write("\r\n");
             if(lista != null){

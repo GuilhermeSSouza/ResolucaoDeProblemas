@@ -30,6 +30,8 @@ public class RP2T3 {
         int op = 1;
         Scanner entrada = new Scanner(System.in);
         chacara.Carregar();
+        salaC.carregaArquivo();
+        
         while (op != 0) {
             System.out.println(" ");
             System.out.println("******** BEM VINDO AO MENU ********");
@@ -69,5 +71,6 @@ public class RP2T3 {
                     
             }
         }
+        salaC.carregaArquivo();
     }
 }
