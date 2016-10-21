@@ -8,9 +8,13 @@ package Menu;
 import Apartamento.Apartamento;
 import static Imovel.EntradasTeclado.inDouble;
 import static Imovel.EntradasTeclado.inInt;
+import static Imovel.EntradasTeclado.inString;
 import Imovel.Imovel;
 import ListaImoveis.ListaDeImoveis;
+import java.io.IOException;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -36,9 +40,9 @@ public class MenuApartamento {
             System.out.println("4) Excluir");
             System.out.println("0) Sair ");
             System.out.println(" ");
-            System.out.print("Opção: ");
-            opcao = entrada.nextInt();
-            entrada.nextLine();
+
+            opcao = inInt("Opção: ");
+
             switch (opcao) {
                 case 0:
                     break;
@@ -56,6 +60,16 @@ public class MenuApartamento {
                     break;
             }
         } while (opcao != 0);
+
+    }
+
+    public void Carregar() {
+
+        try {
+            lista.lerApartamento();
+        } catch (IOException ex) {
+            Logger.getLogger(MenuApartamento.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 
@@ -80,54 +94,35 @@ public class MenuApartamento {
         double valorCondominio;
 
         System.out.println("=======================================");
-        System.out.print("Digite o Logradouro:  ");
-        logradouro = entrada.nextLine();
 
-       
+        logradouro = inString("Digite o Logradouro:  ");
+
         numero = inInt("Digite o numero: ");
-        entrada.nextLine();
 
-        System.out.print("Digite o Bairro:  ");
-        bairro = entrada.nextLine();
+        bairro = inString("Digite o Bairro:  ");
 
-        System.out.print("Digite a Cidade:  ");
-        cidade = entrada.nextLine();
+        cidade = inString("Digite a Cidade:  ");
 
-        System.out.print("Digite Uma Descrição:  ");
-        descricao = entrada.nextLine();
+        descricao = inString("Digite Uma Descrição:  ");
 
-       
         areaTotal = inDouble("Digite a Área Total:  ");
-        entrada.nextLine();
 
-        
         valor = inDouble("Digite o Valor do Imóvel:  ");
-        entrada.nextLine();
 
-        System.out.print("Digite o Nome do Edifício:  ");
-        nomeEdificio = entrada.nextLine();
+        nomeEdificio = inString("Digite o Nome do Edifício:  ");
 
-       
         numeroQuartos = inInt("Digite o Número de Quartos:  ");
-        entrada.nextLine();
 
         numeroVagas = inInt("Digite o Número de Vagas na garagem:  ");
-        entrada.nextLine();
 
-        
         anoDeConstrucao = inInt("Digite o Ano de Construção:  ");
-        entrada.nextLine();
 
-        numeroDoApartamento =inInt("Digite o Número do Apartamento:  ");
-        entrada.nextLine();
+        numeroDoApartamento = inInt("Digite o Número do Apartamento:  ");
 
-        
         andar = inInt("Digite o Número do Andar:  ");
-        entrada.nextLine();
 
-        
         valorCondominio = inDouble("Digite o Valor do Condominio:  ");
-        entrada.nextLine();
+
         System.out.println("=======================================");
 
         Imovel apartamento = new Apartamento(logradouro, numero, bairro,
@@ -136,6 +131,11 @@ public class MenuApartamento {
                 numeroVagas, numeroQuartos);
 
         boolean objeto = lista.incluir(apartamento);
+        try {
+            lista.gravarApartamento();
+        } catch (Exception ex) {
+            Logger.getLogger(MenuSalaComercial.class.getName()).log(Level.SEVERE, null, ex);
+        }
         System.out.println("\n\n");
         if (objeto == true) {
             System.out.println("Imóvel incluido com sucesso.");
@@ -148,6 +148,7 @@ public class MenuApartamento {
      * Método que consulta o imóvel por código
      */
     public void Consultar() {
+
         System.out.println("Digite o Código Que Deseja Consultar: ");
         Imovel Imo = lista.consultar(entrada.nextInt());
         entrada.nextLine();
@@ -179,89 +180,90 @@ public class MenuApartamento {
 
             switch (atributo) {
                 case "logradouro":
-                    System.out.print("Digite o  logradouro: ");
-                    apartamento.setLogradouro(entrada.nextLine());
+
+                    apartamento.setLogradouro(inString(" Digite o  logradouro:"));
 
                     break;
                 case "numero":
-                    System.out.print("Digite o número: ");
-                    apartamento.setNumero(entrada.nextInt());
-                    entrada.nextLine();
+                   
+                    apartamento.setNumero(inInt("Digite o número: "));
+                  
 
                     break;
                 case "bairro":
-                    System.out.print("Digite o Bairro: ");
-                    apartamento.setBairro(entrada.nextLine());
+                  
+                    apartamento.setBairro(inString("Digite o número: "));
 
                     break;
                 case "cidade":
-                    System.out.print("Digite a Cidade: ");
-                    apartamento.setCidade(entrada.nextLine());
+                   
+                    apartamento.setCidade(inString("Digite a Cidade: "));
 
                     break;
                 case "descricao":
-                    System.out.print("Digite a Descrição: ");
-                    apartamento.setDescricao(entrada.nextLine());
+                    
+                    apartamento.setDescricao(inString("Digite a Descrição: "));
 
                     break;
                 case "area total":
-                    System.out.println("Digite a Área Total: ");
-                    apartamento.setAreaTotal(entrada.nextDouble());
-                    entrada.nextLine();
+                    apartamento.setAreaTotal(inDouble("Digite a Área Total: "));
+                    
 
                     break;
                 case "valor":
-                    System.out.print("Digite o valor do Imóvel: ");
-                    apartamento.setValor(entrada.nextDouble());
-                    entrada.nextLine();
+                    apartamento.setValor(inDouble("Digite o valor do Imóvel: "));
+                  
 
                     break;
 
                 case "nome do edificio":
-                    System.out.println("Digite o Nome do Edifício");
-                    apartamento.setNomeEdificio(entrada.nextLine());
+                   apartamento.setNomeEdificio(inString("Digite o Nome do Edifício"));
                     break;
 
                 case "numero de quartos":
-                    System.out.print("Digite o Número de Quartos: ");
-                    apartamento.setNumeroQuartos(entrada.nextInt());
-                    entrada.nextLine();
+                 
+                    apartamento.setNumeroQuartos(inInt("Digite o Número de Quartos: "));
+                
                     break;
 
                 case "numero de vagas":
-                    System.out.print("Digite o Número de vagas na garagem: ");
-                    apartamento.setNumeroVagas(entrada.nextInt());
-                    entrada.nextLine();
+               
+                    apartamento.setNumeroVagas(inInt("Digite o Número de vagas na garagem: "));
+                
                     break;
 
                 case "ano de construcao":
-                    System.out.print("Digite o ano de Construção: ");
-                    apartamento.setAnoDeConstrucao(codigo);
-                    entrada.nextLine();
+                 
+                    apartamento.setAnoDeConstrucao(inInt("Digite o ano de Construção: "));
+                 
                     break;
 
                 case "numero do apartamento":
-                    System.out.print("Digite o número do apartamento: ");
-                    apartamento.setNumeroDoApartamento(entrada.nextInt());
-                    entrada.nextLine();
+               
+                    apartamento.setNumeroDoApartamento(inInt("Digite o número do apartamento: "));
+             
                     break;
 
                 case " andar:":
-                    System.out.print("Digite o Número do Andar: ");
-                    apartamento.setAndar(entrada.nextInt());
-                    entrada.nextLine();
+                apartamento.setAndar(inInt("Digite o Número do Andar: "));
+                 
                     break;
 
                 case "valor do condominio":
-                    System.out.print("Digite o Valor do Condominio:  ");
-                    apartamento.setValorCondominio(entrada.nextDouble());
-                    entrada.nextLine();
+                    apartamento.setValorCondominio(inDouble("Digite o Valor do Condominio:  "));
                     break;
 
             }
             lista.editar(codigo, apartamento);
-        }
+            //arrumar
 
+            try {
+                lista.gravarApartamento();
+            } catch (Exception ex) {
+                Logger.getLogger(MenuSalaComercial.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
     }
 
     public void Excluir() {
@@ -269,8 +271,6 @@ public class MenuApartamento {
         int codigo = entrada.nextInt();
         entrada.nextLine();
         lista.excluir(codigo);
-        
-       
 
     }
 }
