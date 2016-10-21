@@ -36,8 +36,7 @@ public class ListaDeImoveis implements ListaImoveis {
     private TipoDeImovel tipo;
     private String caminho;
 
-    
-     /**
+    /**
      * @return the caminho
      */
     public String getCaminho() {
@@ -50,12 +49,10 @@ public class ListaDeImoveis implements ListaImoveis {
     public void setCaminho(String caminho) {
         this.caminho = caminho;
     }
-    
-    
-    
+
     public String Converte(TipoDeImovel tipo) {
         this.tipo = tipo;
-        this.caminho="";
+        this.caminho = "";
         return System.getProperty("user.dir") + System.getProperty("file.separator") + this.tipo + ".csv";
     }
 
@@ -157,16 +154,17 @@ public class ListaDeImoveis implements ListaImoveis {
         return l;
 
     }
+
     @Override
     public boolean escreverArquivo() {
 
         try {
             FileWriter outFile = new FileWriter(new File(caminho));
             BufferedWriter escrever = new BufferedWriter(outFile);
-            Imovel mo = lista.get(0);
-            escrever.write(mo.toFileTitulo());
+            
+            escrever.write(lista.get(0).toFileTitulo());
             escrever.write("\r\n");
-
+            if(lista != null){
             for (Imovel imovel : lista) {
                 escrever.write(imovel.toFile());
                 escrever.write("\r\n");
@@ -174,6 +172,11 @@ public class ListaDeImoveis implements ListaImoveis {
             escrever.close();
             outFile.close();
             return true;
+            }else{ 
+            escrever.close();
+            outFile.close();
+            }
+            
         } catch (IOException ex) {
             Logger.getLogger(MenuSalaComercial.class.getName()).log(Level.SEVERE, null, ex);
 
@@ -181,44 +184,41 @@ public class ListaDeImoveis implements ListaImoveis {
         return false;
     }
 
-    
-
     @Override
     public boolean lerArquivo() {
-    if(tipo.getValor() == 1){
-        //chamar metodo de ler apartamamento
-     return true;
-    }if(tipo.getValor() == 2){
-       //Chama metodo de ler casa
-     return true;  
-    }if(tipo.getValor() == 3){
-      //Chama metodo de ler Chacara
-      return true;
-    }if(tipo.getValor() == 4){
-        
-        try {
-            lerSala();
-        } catch (IOException ex) {
-            Logger.getLogger(ListaDeImoveis.class.getName()).log(Level.SEVERE, null, ex);
+        if (tipo.getValor() == 1) {
+            //chamar metodo de ler apartamamento
+            return true;
         }
+        if (tipo.getValor() == 2) {
+            //Chama metodo de ler casa
+            return true;
+        }
+        if (tipo.getValor() == 3) {
+            //Chama metodo de ler Chacara
+            return true;
+        }
+        if (tipo.getValor() == 4) {
+
+            try {
+                lerSala();
+            } catch (IOException ex) {
+                Logger.getLogger(ListaDeImoveis.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            return true;
+        }
+        if (tipo.getValor() == 5) {
+            //Chama metodo de Ler terreno
+
+            return true;
+        }
+
+        return false;
+    }
+
+    public void lerSala() throws FileNotFoundException, IOException {
         
-     return true;   
-    }if(tipo.getValor() == 5){
-      //Chama metodo de Ler terreno
-      
-     return true; 
-    }
-    
-    
-    return false;
-    }
-
-    
-    public boolean lerSala() throws FileNotFoundException, IOException {
-
-        File file = new File(System.getProperty("user.dir") + System.getProperty("file.separator") + "Sala.csv");
-
-        if (file.exists()) {
             FileInputStream arquivo;
             BufferedReader ler;
             String linha, logradouro, bairro, cidade, descricao, nomeEdificio;
@@ -253,16 +253,11 @@ public class ListaDeImoveis implements ListaImoveis {
             }
             ler.close();
             arquivo.close();
-            return true;
 
-        }
-        return false;
+        
+
     }
 
-     
-
-    
-    
     public void gravarChacara() throws Exception {
 
         //verificar se o arquivo existe, se não existeir criar (o ato de recriar o mesmo arquivo ja resolve por se só?)
@@ -480,7 +475,5 @@ public class ListaDeImoveis implements ListaImoveis {
         }
         return false;
     }
-
-   
 
 }

@@ -125,10 +125,15 @@ public class MenuSalaComercial {
     public void excluirControle() {
         System.out.println(" DIGITE O CODIGO DO IMÓVEL: ");
         boolean objeto = lista.excluir(entrada.nextInt());
+        
         if (objeto == true) {
-
-            System.out.println("IMÓVEL EXCUIDO");
+            try {
             lista.escreverArquivo();
+        } catch (Exception ex) {
+            Logger.getLogger(MenuSalaComercial.class.getName()).log(Level.SEVERE, null, ex);
+        }            
+            System.out.println("IMÓVEL EXCUIDO");
+            
         } else {
 
             System.out.println("IMÓVEL NÂO ENCONTRADO");
